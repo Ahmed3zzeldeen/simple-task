@@ -42,7 +42,10 @@ const useAuth = () => {
   const login = async (email: string, password: string) => {
     try {
       await loginApi(email, password);
-    } catch (error) {
+    } catch (error:any) {
+      if(error?.message === "Firebase: Error (auth/invalid-credential).") {
+        throw new Error("Invalid email or password");
+      }
       throw error;
     }
   }
