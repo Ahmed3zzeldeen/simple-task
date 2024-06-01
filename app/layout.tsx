@@ -20,7 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <main className="flex h-screen flex-col items-center p-24 gap-8">
+        <main 
+          className="flex flex-col items-center gap-8 bg-zinc-900"
+          style={{
+            minHeight: "90vh",
+            paddingTop: "15vh",
+          }}
+        >
           {children}
         </main>
         <Footer />
