@@ -1,4 +1,5 @@
 'use client';
+import ROUTES from '@/constants/routes';
 import useAuth from '@/hooks/useAuth';
 import React, { FormEvent, useState } from 'react'
 
@@ -137,7 +138,7 @@ function SingupForm() {
       />
       {error && <p className="text-red-500">{error.message}</p>}
       <a
-        href="/auth/login"
+        href={ROUTES.AUTH.LOG_IN}
         className="text-blue-500 my-4"
       >
         I have an account? Login

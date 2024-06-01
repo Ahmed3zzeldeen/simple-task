@@ -1,4 +1,5 @@
 'use client';
+import ROUTES from '@/constants/routes';
 import useAuth from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react'
@@ -105,14 +106,14 @@ function LoginForm() {
           Remember me
         </label>
         <a
-          href="/auth/forgot-password"
+          href={ROUTES.AUTH.FORGOT_PASSWORD}
           className="text-blue-500"
         >
           Forgot Password?
         </a>
       </div>
       <a
-        href="/auth/signup"
+        href={ROUTES.AUTH.SING_UP}
         className="text-blue-500 my-4"
       >
         I don not have an account? Register

@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { auth } from "@/firebase/Config";
 import { loginApi, logoutApi, registerApi} from "@/firebase/apis/auth";
 import { findUserById } from "@/firebase/apis/users";
-import { register } from "module";
 
 const useAuth = () => {
   const [user, setUser] = useState<DUser | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
 
   useEffect(() => {
     auth.onAuthStateChanged(async (userData) => {
@@ -19,9 +20,11 @@ const useAuth = () => {
         setUser(userFound);
         console.log("User is logged in");
         console.log("UserFound: ", userFound);
-        
+        setIsLoading(false);
       }else {
         console.log("User is logged out");
+        setUser(null);
+        setIsLoading(false);
       }
     });
   }, [isLoggedIn]);
@@ -39,7 +42,10 @@ const useAuth = () => {
   const login = async (email: string, password: string) => {
     try {
       await loginApi(email, password);
-    } catch (error) {
+    } catch (error:any) {
+      if(error?.message === "Firebase: Error (auth/invalid-credential).") {
+        throw new Error("Invalid email or password");
+      }
       throw error;
     }
   }
@@ -60,7 +66,7 @@ const useAuth = () => {
   }
 
 
-  return { user, isLoggedIn , signup , login , logout};
+  return { user, isLoggedIn , signup , login , logout , isLoading};
 };
 
 
