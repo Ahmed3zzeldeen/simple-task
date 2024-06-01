@@ -1,4 +1,5 @@
 'use client';
+import ROUTES from '@/constants/routes';
 import { resetPasswordApi } from '@/firebase/apis/auth';
 import { set } from 'firebase/database';
 import React, { FormEvent, useState } from 'react'
@@ -87,13 +88,13 @@ function ResetPasswordForm() {
       {error && <p className="text-red-500 mb-5">{error.message}</p>}
       {success && <p className="text-green-500 mb-5">Password reset link sent to your email</p>}
       <a
-        href="/auth/login"
+        href={ROUTES.AUTH.LOG_IN}
         className="text-blue-500 my-2"
       >
         I remember my password? Login
       </a>
       <a
-        href="/auth/signup"
+        href={ROUTES.AUTH.SING_UP}
         className="text-blue-500"
       >
         I don not have an account? Register
