@@ -4,6 +4,7 @@ import React from 'react'
 import useAuth from '@/hooks/useAuth';
 import Image from 'next/image';
 import Link from 'next/link';
+import ROUTES from '@/constants/routes';
 
 export default function AuthComponent() {
   const { user, logout , isLoading } = useAuth();
@@ -31,8 +32,8 @@ export default function AuthComponent() {
           </div>
         ) : (
           <div className='flex justify-between items-center gap-5'>
-            <Link href="/auth/login" className='bg-blue-500  text-white  rounded-md  mt-2  px-2  py-1  hover:bg-blue-600  transition  duration-200  ease-in-out'>Login</Link>
-            <Link href="/auth/signup" className='bg-blue-500  text-white  rounded-md  mt-2  px-2  py-1  hover:bg-blue-600  transition  duration-200  ease-in-out'>Signup</Link>
+            <Link href={ROUTES.AUTH.LOG_IN} className='bg-blue-500  text-white  rounded-md  mt-2  px-2  py-1  hover:bg-blue-600  transition  duration-200  ease-in-out'>Login</Link>
+            <Link href={ROUTES.AUTH.SING_UP} className='bg-blue-500  text-white  rounded-md  mt-2  px-2  py-1  hover:bg-blue-600  transition  duration-200  ease-in-out'>Signup</Link>
           </div>
         )}
     </div>
