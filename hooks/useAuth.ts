@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { auth } from "@/firebase/Config";
 import { loginApi, logoutApi, registerApi} from "@/firebase/apis/auth";
 import { findUserById } from "@/firebase/apis/users";
-import { register } from "module";
 
 const useAuth = () => {
   const [user, setUser] = useState<DUser | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
 
   useEffect(() => {
     auth.onAuthStateChanged(async (userData) => {
@@ -19,9 +20,11 @@ const useAuth = () => {
         setUser(userFound);
         console.log("User is logged in");
         console.log("UserFound: ", userFound);
-        
+        setIsLoading(false);
       }else {
         console.log("User is logged out");
+        setUser(null);
+        setIsLoading(false);
       }
     });
   }, [isLoggedIn]);
@@ -60,7 +63,7 @@ const useAuth = () => {
   }
 
 
-  return { user, isLoggedIn , signup , login , logout};
+  return { user, isLoggedIn , signup , login , logout , isLoading};
 };
 
 
