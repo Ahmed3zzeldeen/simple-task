@@ -2,7 +2,13 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className="text-center text-gray-400 text-sm">
+    <footer
+      className="flex justify-center items-center bg-zinc-900 text-sm text-center text-gray-400"
+      style={{
+        height: "10vh",
+        width: "100%",
+      }}
+    >
       <p>
         Built with ❤️
         <span> & </span>
