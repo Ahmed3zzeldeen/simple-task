@@ -10,6 +10,7 @@ interface DTodo {
   title: string;
   description: string;
   completed: boolean;
+  checkedDate: string | null;
   dueDate: string;
   userId: string;
 }
