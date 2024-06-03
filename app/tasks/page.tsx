@@ -1,22 +1,42 @@
+'use client';
+
 import AddNewTaskForm from '@/components/AddNewTaskForm';
 import TodoItem from '@/components/TodoItem';
+import useAuth from '@/hooks/useAuth';
+import { getTodosStream } from '@/firebase/apis/todos';
+import { useEffect, useState } from 'react';
 
 export default function page() {
-  const tasks: DTodo | [] = [];
+  const [tasks, setTasks] = useState<DTodo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
-  const fetchTasks = async () => {
-    // TODO: Fetch All Tasks from the firebase
-
-  }
-
-  fetchTasks();
+  useEffect(() => {
+    setLoading(true);
+    if (!user) {
+      setTasks([]);
+    } else if (user && user.id) {
+      const unsubscribe = getTodosStream(user.id, (todos: DTodo[]) => {
+        setTasks(todos);
+        setLoading(false);
+      });
+      return () => {
+        unsubscribe();
+      }
+    } else {
+      setTasks([]);
+      setLoading(false);
+    }
+  }, [user?.id]);
 
   return (
     <div className='flex flex-col gap-4'>
       <AddNewTaskForm />
       <div className='flex flex-col gap-4'>
         <h2 className='text-2xl font-bold text-purple-700'>All Tasks:</h2>
-        {
+        {loading ? (
+          <p className='text-gray-400'>Loading...</p>
+        ) : (
           tasks.length === 0 ? (
             <p className='text-gray-400'>
               You have not created any tasks yet 🥺
@@ -35,7 +55,7 @@ export default function page() {
               />
             ))
           )
-        }
+        )}
       </div>
     </div>
   )
