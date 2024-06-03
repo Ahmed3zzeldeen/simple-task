@@ -1,5 +1,5 @@
 interface DUser {
-  id: number;
+  id: string;
   name: string;
   email: string;
   avatar: string;
