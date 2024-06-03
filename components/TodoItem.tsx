@@ -75,7 +75,7 @@ export default function TodoItem({
 
 
   return (
-    <div className='flex items-center justify-between gap-2 p-2 rounded-md bg-zinc-700'>
+    <div className='flex items-center justify-start md:justify-between flex-wrap gap-2 p-2 rounded-md bg-zinc-700'>
       <div className='w-10/12 flex flex-col'>
         {/* Task title */}
         <div className='flex gap-2 items-center'>
@@ -151,7 +151,7 @@ export default function TodoItem({
         </div>
       </div>
       {/* action buttons */}
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-row md:flex-col gap-2'>
         {isEditing ? (
           <>
             <button className='bg-red-700 text-white p-2 rounded-md' onClick={handleDelete}>Delete</button>

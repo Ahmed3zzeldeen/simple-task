@@ -40,7 +40,7 @@ export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean,
       <summary className='text-md font-bold text-purple-700 mb-4'>
         {inToday ? 'Add New Task for Today' : inWeek ? 'Add New Task for Next 7 Days' : 'Add New Task'}
       </summary>
-      <div className='flex items-center justify-between gap-2 p-2 rounded-md bg-zinc-700'>
+      <div className='flex items-center justify-center md:justify-between flex-wrap gap-2 p-2 rounded-md bg-zinc-700'>
         <div className='w-10/12 flex flex-col'>
           <div className='flex gap-2 items-center ml-6'>
           </div>

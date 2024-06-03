@@ -47,7 +47,8 @@ function ResetPasswordForm() {
       flex
       flex-col
       justify-between
-      p-14
+      p-4
+      md:p-14
       border
       border-gray-200
       rounded-lg
@@ -75,7 +76,7 @@ function ResetPasswordForm() {
           text-gray-500
           rounded-lg
           p-2
-          w-80
+          w-full
           my-4
         "
         value={email}
