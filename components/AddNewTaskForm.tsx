@@ -1,18 +1,37 @@
 "use client";
 
+import { createTodo } from '@/firebase/apis/todos';
+import useAuth from '@/hooks/useAuth';
 import React, { useState } from 'react'
 
 export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean, inWeek?: boolean }) {
+  const { user } = useAuth();
   const [taskTitle, setTaskTitle] = useState<string>('');
   const [taskDescription, setTaskDescription] = useState<string>('');
-  const [taskDueDate, setTaskDueDate] = useState<string>("2024-05-31");
-
   const TODAY = new Date().toISOString().split('T')[0];
+  const [taskDueDate, setTaskDueDate] = useState<string>(TODAY);
   const THE_END_OF_WEEK = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
 
-  const handleAddTask = () => {
-    // TODO: Add task to the database
-    console.log('Add task');
+  const handleAddTask = async () => {
+    if (!taskTitle || !taskDueDate) {
+      alert('Please fill in the task title and due date');
+      return;
+    }
+    if(user === null){
+      alert('Please login to add a task');
+      return;
+    }
+
+    const newTask:DTodo = {
+      id: '',
+      title: taskTitle,
+      description: taskDescription,
+      completed: false,
+      checkedDate: null,
+      dueDate: taskDueDate,
+      userId: user.id,
+    }
+    const Todo = await createTodo(user.id , newTask);
   }
 
 
