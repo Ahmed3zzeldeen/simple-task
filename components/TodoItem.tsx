@@ -1,4 +1,5 @@
 "use client";
+import { deleteTodo, updateTodo } from '@/firebase/apis/todos';
 import clsx from 'clsx';
 import React, { useState } from 'react'
 
@@ -8,27 +9,44 @@ export default function TodoItem({
   description = 'Description of Task 1 Lorem ipsum dolor, sit amet consectetur adipisicing elit. A, nisi. Iure fuga expedita inventore maxime rerum consequuntur libero, suscipit non deserunt. Blanditiis, error! At aliquid, reprehenderit consequuntur dolor eveniet consectetur?',
   dueDate = '2024-05-31',
   completed = false,
-  userId = '123'
+  userId = '123',
+  checkedDate = null
 }: DTodo) {
   const [isCompleted, setIsCompleted] = useState<boolean>(completed);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [taskTitle, setTaskTitle] = useState<string>(title);
   const [taskDescription, setTaskDescription] = useState<string>(description);
   const [taskDueDate, setTaskDueDate] = useState<string>(dueDate);
-  const [taskCheckedDate, setTaskCheckedDate] = useState<string| null>(null);
+  const [taskCheckedDate, setTaskCheckedDate] = useState<string | null>(checkedDate);
 
-  const handleComplete = () => {
-    // TODO: Update task in the database
-    console.log('Complete task');
+  const handleComplete = async () => {
+    const TODAY = new Date().toISOString().split('T')[0];
     setIsCompleted(!isCompleted);
     if (!isCompleted) {
-      setTaskCheckedDate(new Date().toDateString());
+      setTaskCheckedDate(TODAY);
+    }
+    const updatedTask: DTodo = {
+      id,
+      title: taskTitle,
+      description: taskDescription,
+      dueDate: taskDueDate,
+      completed: !isCompleted,
+      checkedDate: isCompleted ? null : TODAY,
+      userId
+    }
+    try {
+      const Todo = await updateTodo(userId, id, updatedTask);
+    } catch (error) {
+      console.error('Error updating task:', error);
     }
   }
 
-  const handleDelete = () => {
-    // TODO: Delete task from the database
-    console.log('Delete task');
+  const handleDelete = async () => {
+    try {
+      const Todo = await deleteTodo(userId, id);
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
   }
 
   const handleEdit = () => {
@@ -36,10 +54,22 @@ export default function TodoItem({
     setIsEditing(true);
   }
 
-  const handleSave = () => {
-    // TODO: Save task to the database after editing
-    console.log('Save task');
+  const handleSave = async () => {
     setIsEditing(false);
+    const updatedTask: DTodo = {
+      id,
+      title: taskTitle,
+      description: taskDescription,
+      dueDate: taskDueDate,
+      completed: isCompleted,
+      checkedDate: taskCheckedDate,
+      userId
+    }
+    try {
+      const Todo = await updateTodo(userId, id, updatedTask);
+    } catch (error) {
+      console.error('Error updating task:', error);
+    }
   }
 
 
