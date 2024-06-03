@@ -2,14 +2,14 @@
 
 import AddNewTaskForm from '@/components/AddNewTaskForm';
 import TodoItem from '@/components/TodoItem';
-import useAuth from '@/hooks/useAuth';
+import UseAuth from '@/hooks/UseAuth';
 import { getTodosStream } from '@/firebase/apis/todos';
 import { useEffect, useState } from 'react';
 
-export default function page() {
+export default function Page() {
   const [tasks, setTasks] = useState<DTodo[]>([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useAuth();
+  const { user } = UseAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -27,7 +27,7 @@ export default function page() {
       setTasks([]);
       setLoading(false);
     }
-  }, [user?.id]);
+  }, [user?.id , user]);
 
   return (
     <div className='flex flex-col gap-4'>

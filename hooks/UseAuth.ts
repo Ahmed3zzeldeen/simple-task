@@ -5,7 +5,7 @@ import { auth } from "@/firebase/Config";
 import { loginApi, logoutApi, registerApi} from "@/firebase/apis/auth";
 import { findUserById } from "@/firebase/apis/users";
 
-const useAuth = () => {
+const UseAuth = () => {
   const [user, setUser] = useState<DUser | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -70,4 +70,4 @@ const useAuth = () => {
 };
 
 
-export default useAuth;
+export default UseAuth;

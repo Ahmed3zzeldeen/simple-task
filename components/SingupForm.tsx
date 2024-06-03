@@ -1,6 +1,6 @@
 'use client';
 import ROUTES from '@/constants/routes';
-import useAuth from '@/hooks/useAuth';
+import UseAuth from '@/hooks/UseAuth';
 import React, { FormEvent, useState } from 'react'
 
 
@@ -9,7 +9,7 @@ interface errorType {
 }
 
 function SingupForm() {
-  const {signup } = useAuth();
+  const {signup } = UseAuth();
   const [fullname, setFullname] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')

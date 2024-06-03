@@ -7,7 +7,7 @@ import ROUTES from '@/constants/routes';
 import LoadingComponent from '@/components/LoadingComponent';
 import { auth } from '@/firebase/Config';
 
-export default function layout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [loading, setLoading] = React.useState(true);
   const router = useRouter();
   
@@ -21,7 +21,7 @@ export default function layout({ children }: Readonly<{ children: React.ReactNod
         setLoading(false);
       }
     });
-  }, []);
+  }, [router]);
 
   if (loading) {
     return <LoadingComponent />;

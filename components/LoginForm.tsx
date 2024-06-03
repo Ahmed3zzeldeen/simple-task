@@ -1,6 +1,6 @@
 'use client';
 import ROUTES from '@/constants/routes';
-import useAuth from '@/hooks/useAuth';
+import UseAuth from '@/hooks/UseAuth';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react'
 
@@ -10,7 +10,7 @@ interface errorType {
 }
 
 function LoginForm() {
-  const { login } = useAuth();
+  const { login } = UseAuth();
   const router = useRouter();
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')

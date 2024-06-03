@@ -1,13 +1,13 @@
 "use client";
 
 import React from 'react'
-import useAuth from '@/hooks/useAuth';
+import UseAuth from '@/hooks/UseAuth';
 import Image from 'next/image';
 import Link from 'next/link';
 import ROUTES from '@/constants/routes';
 
 export default function AuthComponent() {
-  const { user, logout , isLoading } = useAuth();
+  const { user, logout , isLoading } = UseAuth();
 
   // Render the skeleton while we wait for the user to load
   if (isLoading) {

@@ -1,11 +1,11 @@
 "use client";
 
 import { createTodo } from '@/firebase/apis/todos';
-import useAuth from '@/hooks/useAuth';
+import UseAuth from '@/hooks/UseAuth';
 import React, { useState } from 'react'
 
 export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean, inWeek?: boolean }) {
-  const { user } = useAuth();
+  const { user } = UseAuth();
   const [taskTitle, setTaskTitle] = useState<string>('');
   const [taskDescription, setTaskDescription] = useState<string>('');
   const TODAY = new Date().toISOString().split('T')[0];
