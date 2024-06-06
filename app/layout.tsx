@@ -21,8 +21,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         <main 
-          className="flex flex-col items-center gap-8 bg-zinc-900"
+          className="flex flex-col items-center gap-8 
+          bg-zinc-900
+          "
           style={{
+            paddingLeft: "5vw",
+            paddingRight: "5vw",
             minHeight: "90vh",
             paddingTop: "15vh",
           }}

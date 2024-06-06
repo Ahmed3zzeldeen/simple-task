@@ -26,7 +26,7 @@ export default function AuthComponent() {
           <div className='flex items-center justify-center w-full gap-5'>
             <div className='flex items-center gap-5'>
               <Image src={user?.avatar} alt="avatar" className='w-10 h-10 rounded-full' width={100} height={100} />
-              <h2>{user?.name}</h2>
+              <h2 className='hidden md:flex'>{user?.name}</h2>
             </div>
             <button className='bg-red-500  text-white  rounded-md  mt-2  px-2  py-1  hover:bg-red-600  transition  duration-200  ease-in-out' onClick={logout}>Logout</button>
           </div>

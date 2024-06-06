@@ -77,8 +77,11 @@ export default function TodoItem({
     <div className='flex items-center justify-start md:justify-between flex-wrap gap-2 p-2 rounded-md bg-zinc-700'>
       <div className='w-10/12 flex flex-col'>
         {/* Task title */}
-        <div className='flex gap-2 items-center'>
-          <input className='checked:bg-green-700' type='checkbox' checked={isCompleted} onChange={handleComplete} />
+        <div className='flex'>
+          <input className='self-start custom-checkbox'
+          type='checkbox'
+          checked={isCompleted} 
+          onChange={handleComplete} />
           {
             isEditing ? (
               <input
@@ -90,19 +93,27 @@ export default function TodoItem({
                 text-lg font-bold text-gray-300
                 bg-transparent p-2 rounded-md w-full
                 border-b-2 border-gray-500
-                m-2
+                mb-2
                 '
               />
             ) :
-              <>
-                <h3 className={clsx('text-lg font-bold text-gray-300', { 'line-through': isCompleted })} >
+              <div className='
+                flex 
+                flex-wrap
+                md:flex-nowrap
+                md:gap-2
+                gap-1
+              '>
+                <h3 className={clsx(`
+                text-base
+                font-bold text-gray-300`, { 'line-through': isCompleted })} >
                   {taskTitle}
                 </h3>
                 {isCompleted && taskCheckedDate && <span className='text-sm text-gray-400'> ✅ at {taskCheckedDate}</span>}
-            </>
+            </div>
           }
         </div>
-        <div className='ml-6'>
+        <div className='ml-8'>
           {/* Description with details tag */}
           {
             isEditing ? (
@@ -130,7 +141,7 @@ export default function TodoItem({
           }
           {/* Due date */}
           <div className='flex gap-2 items-center'>
-            <span className={clsx('font-bold', { 'text-gray-400': isCompleted, 'text-white': !isCompleted })}>Due Date:</span>
+            <span className={clsx('font-bold', { 'text-gray-400': isCompleted, 'text-white': !isCompleted })}>⌛ Due Date:  </span>
             {
               isEditing ? (
                 <input

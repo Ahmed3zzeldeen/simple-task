@@ -32,6 +32,9 @@ export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean,
       userId: user.id,
     }
     const Todo = await createTodo(user.id , newTask);
+    setTaskTitle('');
+    setTaskDescription('');
+    setTaskDueDate(TODAY);
   }
 
 
@@ -40,11 +43,9 @@ export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean,
       <summary className='text-md font-bold text-purple-700 mb-4'>
         {inToday ? 'Add New Task for Today' : inWeek ? 'Add New Task for Next 7 Days' : 'Add New Task'}
       </summary>
-      <div className='flex items-center justify-center md:justify-between flex-wrap gap-2 p-2 rounded-md bg-zinc-700'>
-        <div className='w-10/12 flex flex-col'>
-          <div className='flex gap-2 items-center ml-6'>
-          </div>
-          <div className='ml-6'>
+      <div className='flex items-center flex-wrap md:justify-between md:flex-nowrap gap-2 md:gap-5  p-2 rounded-md bg-zinc-700'>
+        <div className='flex flex-col w-full'>
+          <div >
             {/* Task title */}
             <input
               type='text'
@@ -89,8 +90,20 @@ export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean,
           </div>
         </div>
         {/* action buttons */}
-        <div className='flex flex-col gap-2'>
-          <button className="border-2 border-purple-500 p-2 text-purple-500 hover:text-white hover:bg-purple-500 rounded-lg flex" onClick={handleAddTask}>
+        <div className='
+        w-full 
+        md:max-w-max
+        flex flex-col gap-2'>
+          <button className="
+          w-full
+          bg-purple-500 
+          hover:text-purple-500 
+          text-white 
+          hover:bg-purple-100 
+          rounded-lg 
+          p-2 
+          flex" 
+          onClick={handleAddTask}>
             <svg className="h-6 w-6 mr-2" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" >  <path stroke="none" d="M0 0h24v24H0z" />  <circle cx="12" cy="12" r="9" />  <line x1="9" y1="12" x2="15" y2="12" />  <line x1="12" y1="9" x2="12" y2="15" /></svg>
             <span>Add Task</span>
           </button>
