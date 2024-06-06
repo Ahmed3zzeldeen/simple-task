@@ -65,10 +65,12 @@ async function findUserByField(field, value) {
   const usersCollectionRef = collection(db, "users");
   const q = query(usersCollectionRef, where(field, "==", value));
   const querySnapshot = await getDocs(q);
-  if (querySnapshot.empty) {
-    return null;
-  }
-  return querySnapshot.docs[0].data();
+  const users = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  console.log('users :>> ', users);
+  return users.length > 0 ? users[0] : null;
 }
 
 export {
