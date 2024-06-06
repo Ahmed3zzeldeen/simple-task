@@ -50,7 +50,6 @@ export default function TodoItem({
   }
 
   const handleEdit = () => {
-    console.log('Edit task');
     setIsEditing(true);
   }
 
