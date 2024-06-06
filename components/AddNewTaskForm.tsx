@@ -32,6 +32,9 @@ export default function AddNewTaskForm({ inToday, inWeek }: { inToday?: boolean,
       userId: user.id,
     }
     const Todo = await createTodo(user.id , newTask);
+    setTaskTitle('');
+    setTaskDescription('');
+    setTaskDueDate(TODAY);
   }
 
 
