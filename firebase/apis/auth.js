@@ -38,11 +38,12 @@ async function loginApi(email, password) {
     if (!email || !password) {
       throw new Error("Email and password are required");
     }
-    const user = await findUserByField("email", email);
+    let emailLower = email.toLowerCase();
+    const user = await findUserByField("email", emailLower);
     if (!user) {
       throw new Error("User not found");
     }
-    const credentials = await signInWithEmailAndPassword(auth, email, password);
+    const credentials = await signInWithEmailAndPassword(auth, emailLower, password);
     return credentials;
   } catch (error) {
     throw error;
