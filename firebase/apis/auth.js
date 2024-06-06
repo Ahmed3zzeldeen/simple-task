@@ -54,9 +54,7 @@ async function logoutApi() {
     const user = auth.currentUser;
     if (user) {
       await signOut(auth);
-      console.log("User logged out successfully.");
     } else {
-      console.log("No user is logged in.");
     }
   } catch (error) {
     throw error;
