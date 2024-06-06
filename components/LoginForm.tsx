@@ -33,7 +33,7 @@ function LoginForm() {
     try {
       // @ts-ignore
       await login(email, password);
-      router.push('/');
+      router.push(ROUTES.TASKS.HOME);
     } catch (error) {
       // @ts-ignore
       setError(error)

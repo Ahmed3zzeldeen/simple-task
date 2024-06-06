@@ -1,6 +1,7 @@
 'use client';
 import ROUTES from '@/constants/routes';
 import UseAuth from '@/hooks/UseAuth';
+import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react'
 
 
@@ -14,7 +15,8 @@ function SingupForm() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [error, setError] = useState<errorType>({ message: '' })
-  
+  const router = useRouter();
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     // check if fullname ,email and password are empty
@@ -52,7 +54,8 @@ function SingupForm() {
     try {
       // @ts-ignore
       await signup(fullname, email, password);
-      console.log('User registered successfully');
+      router.push(ROUTES.TASKS.HOME);
+
     } catch (error) {
       // @ts-ignore
       setError(error)

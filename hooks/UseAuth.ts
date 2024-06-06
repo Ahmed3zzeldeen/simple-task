@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import { auth } from "@/firebase/Config";
 import { loginApi, logoutApi, registerApi} from "@/firebase/apis/auth";
 import { findUserById } from "@/firebase/apis/users";
+import ROUTES from "@/constants/routes";
+import { useRouter } from "next/navigation";
 
 const UseAuth = () => {
   const [user, setUser] = useState<DUser | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -18,11 +21,8 @@ const UseAuth = () => {
         const userFound = await findUserById(userData.uid);
         // @ts-ignore
         setUser(userFound);
-        console.log("User is logged in");
-        console.log("UserFound: ", userFound);
         setIsLoading(false);
       }else {
-        console.log("User is logged out");
         setUser(null);
         setIsLoading(false);
       }
@@ -34,6 +34,7 @@ const UseAuth = () => {
       await logoutApi();
       setUser(null);
       setIsLoggedIn(false);
+      router.push(ROUTES.AUTH.LOG_IN);
     } catch (error) {
       throw error;
     }
