@@ -4,6 +4,8 @@ The app allows users to add, delete, and mark todos as completed.
 Users can also filter todos by status and due date today, tomorrow, next week ,and all completed todos. 
 
 ## Demo 🎥
+![image](https://github.com/Ahmed3zzeldeen/simple-task/assets/73358147/b4fc7def-8c0e-4e62-8eae-4a25b22e7172)
+
 You can view a live demo of the app [here](https://simple-task-coral.vercel.app/)
 
 
